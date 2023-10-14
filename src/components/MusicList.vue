@@ -44,7 +44,7 @@ const songsList = [
 
 async function readMusic() {
   for (let i = 0; i < songsList.length; i++) {
-    const musicDir = process.env.NODE_ENV !== 'production' ? '/src/music/' : '/dist/music/';
+    const musicDir = import.meta.env.MODE !== 'production' ? '/music/' : `${import.meta.env.BASE_URL}/music/`;
 
     const data = await readFile(musicDir + songsList[i])
     let blobUrl = URL.createObjectURL(data)
