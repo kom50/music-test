@@ -50,7 +50,7 @@ function play() {
 
   // if (!audio.value) reutrn
 
-  playBtn.value.textContent = !isPlaying.value ? 'Play' : 'Pause'
+  playBtn.value.textContent = isPlaying.value ? 'Play' : 'Pause'
 
   audio.value[!isPlaying.value ? 'play' : 'pause']()
   isPlaying.value = !isPlaying.value
