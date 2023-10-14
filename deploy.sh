@@ -21,7 +21,7 @@ git checkout -b main
 git add -A
 git commit -m 'deploy' 
 
-git push -f git@github.com:kom50/music-test.git main:gh-pages
+git push -f origin main:gh-pages
 
 echo 'Done'
 
