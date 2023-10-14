@@ -44,7 +44,9 @@ const songsList = [
 
 async function readMusic() {
   for (let i = 0; i < songsList.length; i++) {
-    const data = await readFile('/src/music/' + songsList[i])
+    const musicDir = process.env.NODE_ENV !== 'production' ? '/src/music/' : '/dist/music/';
+
+    const data = await readFile(musicDir + songsList[i])
     let blobUrl = URL.createObjectURL(data)
 
     audioFiles.value.push(blobUrl)

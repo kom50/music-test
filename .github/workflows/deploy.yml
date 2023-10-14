@@ -24,6 +24,10 @@ jobs:
 
         echo 'Deploying to gh-pages...'
 
+        # For music files
+        mkdir dist/music
+        cp src/music/* dist/music/
+
         git add dist -f
         git commit -m 'Deploying to gh-pages"' 
         git push origin `git subtree split --prefix dist main`:gh-pages --force
