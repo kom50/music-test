@@ -12,6 +12,8 @@
         <button @click="play" ref="playBtn">Pause</button>
         <button @click="previous">previous</button>
         <button @click="next">Next</button>
+        <button @click="shuffle">Shuffle</button>
+        <button @click="repeat">Repeat</button>
       </div>
     </div>
   </div>
@@ -78,5 +80,22 @@ function previous() {
 
   audio.value.src = audioFiles.value[currentAudioIndex.value]
   audio.value.play()
+}
+
+
+function shuffle() {
+  const rnd = Math.floor(Math.random() * (audioFiles.length || 3))
+  console.log("🚀 ~ file: MusicList.vue:87 ~ shuffle ~ rnd:", rnd)
+
+  audio.value.src = audioFiles.value[rnd]
+  audio.value.play()
+}
+
+function repeat() {
+  // const rnd = Math.floor(Math.random() * (audioFiles.length || 3))
+  // console.log("🚀 ~ file: MusicList.vue:87 ~ shuffle ~ rnd:", rnd)
+
+  // audio.value.src = audioFiles.value[rnd]
+  // audio.value.play()
 }
 </script>
