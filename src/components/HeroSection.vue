@@ -12,7 +12,7 @@
         <div class="text-center">
           <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
             {{ ' ' }}
-            <span class="block text-indigo-600 xl:inline">Online music</span>
+            <span class="block text-indigo-600 xl:inline">Music player</span>
           </h1>
           <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
 
