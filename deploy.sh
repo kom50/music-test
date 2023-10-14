@@ -20,4 +20,6 @@ git commit -m 'deploy'
 
 git push -f git@github.com:kom50/music-test.git main:gh-pages
 
+echo 'Done'
+
 cd -    
