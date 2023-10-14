@@ -16,21 +16,20 @@ jobs:
         git config --global user.email "omprakashkartik82280@gmail.com"
         git config --global user.name "kom50"
 
-        # Install depedencies
+      # Install depedencies
         npm i
+        rm -rf dist
 
-        # build
+      # build
         npm run build
 
-        # navigate into the build output directory
-        cd dist
-
         echo 'Deploying to gh-pages...'
-        git init
-        git checkout -b main
-        git add -A
+        ls
+
+        git add dist -f
         git commit -m 'Deploying to gh-pages"' 
-        git push origin main:gh-pages
+      # git subtree push --prefix dist origin main:gh-pages --force
+        git push origin `git subtree split --prefix dist main`:gh-pages --force
 
         echo 'Done'
       env:

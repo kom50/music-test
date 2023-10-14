@@ -14,6 +14,7 @@
             {{ ' ' }}
             <span class="block text-indigo-600 xl:inline">Music player</span>
           </h1>
+          <p>test</p>
           <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
 
           </div>
@@ -24,13 +25,4 @@
 </template>
   
 <script setup>
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
-
-const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
-]
-
 </script>
