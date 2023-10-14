@@ -15,14 +15,23 @@ jobs:
       run: |
         git config --global user.email "omprakashkartik82280@gmail.com"
         git config --global user.name "kom50"
-        # git checkout -b om
-        # git add .
-        # git commit -m "Commit message"
-        # git push origin om
-    - name: Grant execute permissions to deploy.sh
-      run: |
-        chmod +x deploy.sh
-        ls
-        ./deploy.sh
+
+        # Install depedencies
+        npm i
+
+        # build
+        npm run build
+
+        # navigate into the build output directory
+        cd dist
+
+        echo 'Deploying to gh-pages...'
+        git init
+        git checkout -b main
+        git add -A
+        git commit -m 'Deploying to gh-pages"' 
+        git push origin main:gh-pages
+
+        echo 'Done'
       env:
         github-token: ${{ secrets.GH_TOKEN }}
