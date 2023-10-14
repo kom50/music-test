@@ -9,7 +9,7 @@
 
         <audio src="#" ref="audio"></audio>
 
-        <button @click="play" ref="playBtn">PLay</button>
+        <button @click="play" ref="playBtn">Pause</button>
         <button @click="previous">previous</button>
         <button @click="next">Next</button>
       </div>
@@ -26,6 +26,8 @@ const audioFiles = ref([])
 const audio = ref(null)
 const playBtn = ref(null)
 const isPlaying = ref(true)
+
+const currentAudioIndex = ref(0)
 
 function getFiles(event) {
 
@@ -58,11 +60,23 @@ function play() {
 
 
 function next() {
+  if (audioFiles.value.length - 1 !== currentAudioIndex.value)
+    currentAudioIndex.value++
+  else
+    currentAudioIndex.value = 0
 
+  audio.value.src = audioFiles.value[currentAudioIndex.value]
+  audio.value.play()
 }
 
 
 function previous() {
+  if (currentAudioIndex.value === 0)
+    currentAudioIndex.value = audioFiles.value.length - 1
+  else
+    currentAudioIndex.value--
 
+  audio.value.src = audioFiles.value[currentAudioIndex.value]
+  audio.value.play()
 }
 </script>
