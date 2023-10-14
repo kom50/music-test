@@ -1,7 +1,20 @@
-# Vue 3 + Vite
+### Here are some basic features to implements
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+**Play, Pause, and Stop:** These buttons allow users to start, pause, and stop the playback of audio files.
 
-## Recommended IDE Setup
+**Volume Control:** This feature allows users to adjust the volume of the audio file.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+**Progress Bar:** It shows the current progress of the song being played out of the total duration of the audio file.
+
+**Playlist**: This feature allows users to create a list of songs that they want to listen to.
+
+**Shuffle and Repeat**: These features allow users to shuffle the order of songs in a playlist and repeat a song or playlist. 
+
+**Shuffle Button**: When this button is pressed, it randomly selects one song from the current playlist for playing.
+
+**Metadata Display:** This feature displays information about the audio file such as title, artist, album, and genre. 
+
+**Next/Previous Song**: Users can skip to the next or previous song in the playlist
+
+**Seek Bar:** The seek bar is a slider that can be used for fast forward or rewinding through an audio track
+
