@@ -18,11 +18,7 @@ jobs:
 
         # Install depedencies
         npm i
-
-        ls
-
         rm -rf dist
-        ls
 
         # build
         npm run build
