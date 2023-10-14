@@ -9,7 +9,9 @@
 
         <audio src="#" ref="audio"></audio>
 
-        <button @click="play">PLay</button>
+        <button @click="play" ref="playBtn">PLay</button>
+        <button @click="previous">previous</button>
+        <button @click="next">Next</button>
       </div>
     </div>
   </div>
@@ -22,6 +24,8 @@ import { ref } from 'vue';
 
 const audioFiles = ref([])
 const audio = ref(null)
+const playBtn = ref(null)
+const isPlaying = ref(true)
 
 function getFiles(event) {
 
@@ -42,7 +46,23 @@ function getFiles(event) {
 
 
 function play() {
+  console.log("🚀 ~ file: MusicList.vue:50 ~ play ~ console:")
+
+  // if (!audio.value) reutrn
+
+  playBtn.value.textContent = !isPlaying.value ? 'Play' : 'Pause'
+
+  audio.value[!isPlaying.value ? 'play' : 'pause']()
+  isPlaying.value = !isPlaying.value
+}
+
+
+function next() {
 
 }
 
+
+function previous() {
+
+}
 </script>
