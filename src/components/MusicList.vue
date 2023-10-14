@@ -33,11 +33,7 @@ function getFiles(event) {
 
   for (let i = 0; i < files.length; i++) {
     audioFiles.value[i] = URL.createObjectURL(files[i]);
-    console.log("🚀 ~ file: MusicList.vue:32 ~ getFiles ~ audioFiles:", audioFiles.value)
   }
-
-  // audioFiles.value[0].play()
-  // audioFiles.value[0].play()
 
   audio.value.src = audioFiles.value[0]
   // audio.value.play() // stop
