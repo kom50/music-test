@@ -6,13 +6,29 @@
       <div class="w-full grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
 
         <input type="file" @input="getFiles" @ended="nextAudio" multiple>
-        <audio src="#" ref="audio"></audio>
 
-        <button @click="play" ref="playBtn">Pause</button>
-        <button @click="previous">previous</button>
-        <button @click="next">Next</button>
-        <button @click="shuffle">Shuffle</button>
-        <button @click="repeat">Repeat</button>
+        <audio src="#" ref="audio"></audio>
+        <br>
+        <div class="flex justify-around">
+          <button @click="previous" title="Previous">
+            <span class="material-icons"> skip_previous </span>
+          </button>
+          <button @click="play" ref="playBtn" :title="!isPlaying ? 'Play' : 'Pause'">
+            <span class="material-icons"> {{ !isPlaying ? 'play_arrow' : 'pause' }}</span>
+          </button>
+          <button @click="next" title="Next">
+            <span class="material-icons"> skip_next </span>
+          </button>
+        </div>
+        <br>
+        <div class="flex justify-between">
+          <button @click="shuffle" title="Shuffle">
+            <span class="material-icons"> {{ !isShuffle ? 'shuffle' : 'shuffle_on' }} </span>
+          </button>
+          <button @click="repeat" title="Repeat">
+            <span class="material-icons"> {{ !isRepeat ? 'repeat' : 'repeat_on' }} </span>
+          </button>
+        </div>
 
       </div>
       <!-- For audio progress bar controlls -->
@@ -46,7 +62,7 @@ import { onMounted, ref } from 'vue';
 
 const audioFiles = ref([])
 const audio = ref(null)
-const playBtn = ref(null)
+// const playBtn = ref(null)
 const isPlaying = ref(false)
 const isLoading = ref(true)
 const isShuffle = ref(false)
@@ -106,7 +122,7 @@ function play() {
 
   // if (!audio.value) reutrn
 
-  playBtn.value.textContent = isPlaying.value ? 'Play' : 'Pause'
+  // playBtn.value.textContent = isPlaying.value ? 'Play' : 'Pause'
 
   audio.value[!isPlaying.value ? 'play' : 'pause']()
   isPlaying.value = !isPlaying.value
@@ -142,7 +158,7 @@ function shuffle() {
 }
 
 function repeat() {
-  isRepeat.value =!isRepeat.value
+  isRepeat.value = !isRepeat.value
 }
 
 /** 
@@ -183,7 +199,7 @@ onMounted(() => {
   // audio ended
   audio.value.addEventListener('ended', () => {
     console.log('music ended')
-    if(isRepeat.value) audio.value.play()
+    if (isRepeat.value) audio.value.play()
     else if (!isShuffle.value) next()
     else shuffle()
   })
