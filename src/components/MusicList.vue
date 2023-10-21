@@ -83,6 +83,8 @@ async function readFile(url) {
 }
 
 const songsList = [
+  'SoundHelix-Song-10.mp3',
+  'SoundHelix-Song-5.mp3',
   'Bagalwali Jaan Maareli-BiharMasti.IN.mp3',
   'Hihi Hihi Has Dele Rinkiya Ke Papa-BiharMasti.IN.mp3',
   'Hum Hi Hain Bhojpuriya Don-BiharMasti.IN.mp3'
