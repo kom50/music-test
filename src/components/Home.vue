@@ -1,7 +1,7 @@
 
 import HeroSection from './HeroSection.vue';
 <template>
-    <HeroSection/>
+    <HeroSection />
     <MusicList />
 </template>
 <script setup>

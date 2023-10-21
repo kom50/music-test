@@ -1,7 +1,10 @@
 <script setup>
-import Home from "./components/Home.vue"
+import Music from "./components/Music.vue"
+// import Home from "./components/Home.vue"
 </script>
 
 <template>
-    <Home />
+    <div class="h-screen w-screen">
+        <Music />
+    </div>
 </template>
