@@ -59,6 +59,7 @@ const start = ref(null)
 const end = ref(null)
 
 const currentAudioIndex = ref(0)
+const isRepeat = ref(false)
 
 async function readFile(url) {
   const res = await fetch(url)
@@ -141,7 +142,7 @@ function shuffle() {
 }
 
 function repeat() {
-  // write code 
+  isRepeat.value =!isRepeat.value
 }
 
 /** 
@@ -182,7 +183,8 @@ onMounted(() => {
   // audio ended
   audio.value.addEventListener('ended', () => {
     console.log('music ended')
-    if (!isShuffle.value) next()
+    if(isRepeat.value) audio.value.play()
+    else if (!isShuffle.value) next()
     else shuffle()
   })
 
@@ -191,7 +193,6 @@ onMounted(() => {
   // progress bar time update
   audio.value.addEventListener('timeupdate', (event) => {
     progress.value = (event.target.currentTime / event.target.duration) * 100
-
 
     // Update timeline
     start.value.textContent = formattedDuration(event.target.currentTime)
