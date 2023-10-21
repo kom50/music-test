@@ -13,6 +13,11 @@
         <button @click="next">Next</button>
         <button @click="shuffle">Shuffle</button>
         <button @click="repeat">Repeat</button>
+
+        <div class="flex justify-center items-center w-full">
+          <input ref="progressBar" v-model='progress' type="range" @input="changeTrack"
+            class="w-full h-1 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm dark:bg-gray-700">
+        </div>
       </div>
     </div>
   </div>
@@ -28,6 +33,9 @@ const playBtn = ref(null)
 const isPlaying = ref(false)
 const isLoading = ref(true)
 const isShuffle = ref(false)
+
+const progressBar = ref(null)
+const progress = ref(0)
 
 const currentAudioIndex = ref(0)
 
@@ -73,7 +81,6 @@ function getFiles(event) {
 
 
 function play() {
-  console.log("🚀 ~ file: MusicList.vue:50 ~ play ~ console:")
 
   // if (!audio.value) reutrn
 
@@ -118,16 +125,32 @@ function repeat() {
   // write code 
 }
 
+/** 
+ * Function to change audio track manually 
+ */
+function changeTrack() {
+  const per = progress.value / 100
+  audio.value.currentTime = (audio.value.duration || 0) * per
+}
+
 onMounted(() => {
+  // Audio data loaded
+  audio.value.addEventListener('loadeddata', (event) => {
+    progressBar.value.value = 0
+  })
+
   // audio ended
   audio.value.addEventListener('ended', () => {
     console.log('music ended')
-
     if (!isShuffle.value) next()
-    else {
-      shuffle()
-    }
+    else shuffle()
+  })
 
+  console.log("🚀 ~ audio ", audio)
+
+  // progress bar time update
+  audio.value.addEventListener('timeupdate', (event) => {
+    progress.value = (event.target.currentTime / event.target.duration) * 100
   })
 })
 </script>
