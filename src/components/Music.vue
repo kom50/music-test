@@ -3,19 +3,19 @@
         <div class="bg-gradient-to-t from-gray-100 to-pink-200 sm:w-96 w-full sm:h-4/5 h-[100%] rounded-lg bottom-0">
             <div class="h-full w-full relative">
                 <!-- music list -->
-                <div class="h-[85%] w-full bg-white absolute left-0 bottom-0 z-20 shadow-xl sm:rounded-lg rounded-tr-3xl rounded-tl-3xl transition-all delay-100 px-2"
+                <div class="h-[85%] w-full bg-white absolute left-0 bottom-0 z-20 shadow-md sm:rounded-lg rounded-tr-3xl rounded-tl-3xl transition-all delay-200 ease-out px-2"
                     v-if="isListShowing">
                     <!-- top navigation  -->
                     <div class="flex justify-between items-center  w-full border-b-2 h-22 mt-2 ">
                         <button @click="() => isListShowing = false"
                             class="w-12 h-12 rounded-full flex justify-center items-center">
-                            <span class="material-icons text-gray-400"> close </span>
+                            <span class="material-icons text-gray-400 "> close </span>
                         </button>
                         <h3 class="text-xl font-bold text-center -ml-14">Play list</h3>
                         <h3 class="text-xl none"> </h3>
                     </div>
                     <!-- music list -->
-                    <div class="h-full">
+                    <div class="h-[90%] overflow-scroll ">
                         <div v-for="(song, index) in songsList" :key="song" @click="changeMusic(index)">
                             <div class="flex justify-start items-center mt-3 w-full border-gray-100 border-b-[1px] p-2">
                                 <!-- <div class="w-14 h-14 bg-blue-400 rounded-lg"> </div> -->
@@ -24,7 +24,8 @@
                                 </button>
                                 <p class="text-ellipsis overflow-hidden"
                                     :class="[index === currentAudioIndex ? 'text-pink-700' : '']">
-                                    {{ song }}</p>
+                                    {{ song }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -34,18 +35,18 @@
                     <!-- Top section -->
                     <div class="h-[55%] w-full flex flex-col justify-center items-center">
                         <!-- top buttons -->
-                        <div class="">
-                            <p class="sm:-mt-[65px] -mt-6 ">My music player</p>
+                        <div class="w-full flex justify-start items-center absolute top-0 ">
                             <button @click="() => isListShowing = true"
-                                class="absolute top-1 left-1 w-16 h-16 rounded-full flex justify-center items-center">
+                                class=" w-16 h-16 rounded-full flex justify-center items-center z-20">
                                 <span class="material-icons text-gray-500 text-2xl text-[32px]">
                                     {{ 'playlist_play' }}
                                 </span>
                             </button>
+                            <p class="w-full text-center items-start absolute left-0 text-xl">My music player</p>
                         </div>
                         <!-- Image -->
-                        <div class="mt-10 w-52 h-52 bg-pink-300 shadow-lg rounded-lg">
-                            <div :class="[isPlaying ? 'animate-bounce' : '']">
+                        <div class="mt-10 w-56 h-56 bg-pink-300 shadow-md rounded-xl">
+                            <div :class="[isPlaying ? 'animate-bounce mt-8 ' : '']">
                                 <img src="../../public/music2.png" class="grayscale-0" alt="music.png">
                             </div>
                         </div>
@@ -79,7 +80,8 @@
                                 <button @click="shuffle" title="Shuffle">
                                     <span
                                         :class="[isShuffle ? 'text-pink-500' : 'text-gray-500', 'material-icons font-medium']">
-                                        {{ 'shuffle' }} </span>
+                                        {{ 'shuffle' }}
+                                    </span>
                                 </button>
                                 <button @click="previous" title="Previous"
                                     class="bg-gray-300 w-12 h-12 rounded-full flex justify-center items-center">
@@ -95,21 +97,22 @@
                                     class="bg-gray-300 w-12 h-12 rounded-full flex justify-center items-center">
                                     <span class="material-icons"> skip_next </span>
                                 </button>
-                                <button @click="repeat" title="Shuffle">
+                                <button @click="repeat" title="repeat">
                                     <span
                                         :class="[isRepeat ? 'text-pink-500' : 'text-gray-500', 'material-icons font-medium']">
-                                        {{ 'repeat' }} </span>
+                                        {{ 'repeat' }}
+                                    </span>
                                 </button>
                             </div>
                             <div class="flex  justify-center items-center w-full gap-x-3">
-                                <button @click="shuffle" title="Shuffle">
+                                <button>
                                     <span :class="['material-icons font-medium text-pink-500 ']">
                                         {{ volume === '0' ? 'volume_off' : 'volume_down' }}
                                     </span>
                                 </button>
                                 <input v-model='volume' type="range" @input="changeVolume" step="10"
                                     class="w-full h-1 bg-gray-200 rounded-lg -mt-1 accent-pink-400">
-                                <button @click="shuffle" title="Shuffle">
+                                <button>
                                     <span class="material-icons text-pink-500 font-medium"> {{ 'volume_up' }} </span>
                                 </button>
                             </div>
@@ -120,7 +123,6 @@
         </div>
     </div>
 </template>
-  
   
 <script setup>
 import { onMounted, ref } from 'vue';
@@ -158,7 +160,6 @@ const songsList = [
     'Udja Kale Kawan Gadar Ek Prem Katha 128 Kbps.mp3',
     'Gadar Ror Dj Remix(MixJio.In).mp3',
     'Yeh Chand Koi Deewana Hai Chhupa Rustam 128 Kbps.mp3'
-
 ]
 
 async function readMusic() {
@@ -198,6 +199,7 @@ function next() {
 
     audio.value.src = audioFiles.value[currentAudioIndex.value]
     audio.value.play()
+    isPlaying.value = true
 }
 
 
@@ -208,6 +210,7 @@ function previous() {
 
     audio.value.src = audioFiles.value[currentAudioIndex.value]
     audio.value.play()
+    isPlaying.value = true
 }
 
 
@@ -217,6 +220,8 @@ function shuffle() {
     isShuffle.value = !isShuffle.value
     audio.value.src = audioFiles.value[rnd]
     audio.value.play()
+    isPlaying.value = true
+    currentAudioIndex.value = rnd
 }
 
 function repeat() {
@@ -254,6 +259,7 @@ function changeMusic(index) {
     currentAudioIndex.value = index
     audio.value.src = audioFiles.value[index]
     audio.value.play()
+    isPlaying.value = true
 }
 
 onMounted(() => {
@@ -295,5 +301,9 @@ input[type="range"] {
     outline: none;
     /* -webkit-appearance: none; */
 
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 </style>
